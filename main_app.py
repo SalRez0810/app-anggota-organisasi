@@ -56,7 +56,7 @@ def halaman_tambah():
     st.markdown("### 🧑‍🤝‍🧑 Tambah Data Anggota Baru")
     st.info("Isilah form berikut untuk menambahkan anggota ke dalam sistem.")
 
-    with st.form("form_tambah"):
+    with st.form("form_tambah", clear_on_submit=True):  # ➤ Tambahkan clear_on_submit=True
         nama = st.text_input("Nama Lengkap")
         alamat = st.text_input("Alamat")
         divisi = st.selectbox("Divisi", DAFTAR_DIVISI)
@@ -68,7 +68,7 @@ def halaman_tambah():
             anggota = Anggota(nama, alamat, divisi, no_hp, tanggal)
             if manajer.tambah_anggota(anggota):
                 st.success("✅ Data anggota berhasil ditambahkan.")
-                st.rerun()
+                st.rerun()  # Tetap pakai rerun untuk refresh tabel jika perlu
             else:
                 st.error("❌ Gagal menambahkan anggota.")
 
