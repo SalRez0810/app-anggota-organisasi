@@ -7,6 +7,7 @@ from konfigurasi import DAFTAR_DIVISI
 # ✅ Konfigurasi Halaman & CSS
 st.set_page_config(page_title="📋 Manajemen Anggota Organisasi", layout="wide", initial_sidebar_state="expanded")
 
+# ✅ Tema Light & Dark Mode Responsive
 st.markdown("""
     <style>
         .stApp {background-color: #f8fff8; color: #2e7d32;}
@@ -16,6 +17,22 @@ st.markdown("""
         section[data-testid="stSidebar"] {background-color: #e8f5e9;}
         .css-1d391kg, .css-10trblm {color: #1b5e20 !important;}
         section[data-testid="stSidebar"] > div {padding-top: 20px;}
+
+        @media (prefers-color-scheme: dark) {
+            .stApp {background-color: #121212; color: #d0ffd0;}
+            section[data-testid="stSidebar"] {background-color: #1b1b1b;}
+            .css-1d391kg, .css-10trblm {color: #81c784 !important;}
+            .stButton>button {background-color: #388e3c; color: white;}
+            .stTextInput>div>div>input, .stNumberInput>div>div>input {
+                border: 1px solid #81c784;
+                background-color: #2c2c2c;
+                color: #d0ffd0;
+            }
+            .stSelectbox>div>div {
+                background-color: #2c2c2c;
+                color: #d0ffd0;
+            }
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -55,7 +72,7 @@ def halaman_tambah():
             else:
                 st.error("❌ Gagal menambahkan anggota.")
 
-# ✅ Halaman Riwayat (Edit & Hapus Hanya Admin)
+# ✅ Halaman Riwayat
 def halaman_riwayat():
     st.subheader("📄 Daftar Riwayat Anggota")
     df = manajer.get_semua_dataframe()
